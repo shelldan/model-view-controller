@@ -1,0 +1,87 @@
+/* Universal */
+:root {
+    --primary: #ccdad1;
+    --secondary: #9caea9;
+    --tertiary: #788585;
+    --light-dark: #6f6866;
+    --dark: #38302e;
+    --border-radius: .3rem;
+}
+  
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--primary);
+    margin: 0;
+    padding: 0;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: var(--dark);
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+/* main.handlebars */
+.top-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark);
+    padding: 1rem 2rem 1rem 2rem; /* top | right | bottom | left */   
+}
+
+.navigation{
+    font-size: 1.5rem;
+    color: var(--secondary);
+    margin-right: 4rem;
+}
+
+a:link { 
+    text-decoration: none; 
+}
+
+a:visited { 
+    text-decoration: none; 
+}
+
+a:hover { 
+    text-decoration: none; 
+}
+
+a:active { 
+    text-decoration: none; 
+}
+
+.header {
+    color: var(--light-dark);
+}
+
+.app-title {
+    font-size: 3rem;
+    background-color: var(--primary);
+    color: var(--dark);
+    padding: 0 10px;
+    display: inline-block;
+    border-radius: var(--border-radius);
+    box-shadow: 6px 5px var(--light-dark);
+  }
+
+/* body handlebars */
+
+.post{
+    margin: 1rem 2rem 1rem 2rem; /* top | right | bottom | left */
+    border: 3px solid var(--dark)   
+}
+
+.card{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem 0 1rem; /* top | right | bottom | left */
+    background-color: var(--dark);
+    color: var(--secondary);
+}
+
+.section{
+    padding: 0 1rem 0 1rem; /* top | right | bottom | left */
+    margin: 1rem 0 1rem 0; /* top | right | bottom | left */
+}
