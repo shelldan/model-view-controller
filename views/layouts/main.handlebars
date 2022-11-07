@@ -7,15 +7,20 @@
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"> -->
+    <link rel="stylesheet" href="/css/jass.css">
     <link rel="stylesheet" href="/css/style.css">
     <title>The Tech Blog</title>
 </head>
 <body>
     <div class="top-container">
         <nav>
-            <a href="" class="navigation">Home</a>
-            <a href="" class="navigation">Dashboard</a>
-            <a href="" class="navigation">Logout</a>
+            <a href="/" class="navigation">Home</a>
+            <a href="/profile" class="navigation">Dashboard</a>
+            {{#if logged_in}}
+            <a href="/profile" class="navigation">Logout</a>
+            {{else}}
+            <a href="/login" class="navigation">Login</a>
+            {{/if}}
         </nav>
 
         <header class="header">
@@ -28,6 +33,10 @@
     <main>
         {{{ body }}}
     </main>    
+
+    {{#if logged_in}}
+    <script scr="/js/logout.js"></script>
+    {{/if}}
     <!-- <script language="javascript" src="js/bootstrap.min.js"></script> -->
 </body>
 </html>
