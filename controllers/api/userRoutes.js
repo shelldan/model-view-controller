@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
 /**
  * localhost:3001/api/user/1 -> api info, use insomnia
  * 
- * question: why I couldn't get this route? 
  */
 router.get('/:id', async (req, res) => {
     try{
@@ -45,7 +44,7 @@ router.get('/:id', async (req, res) => {
                 }
             ]
         });
-        console.log(userData);
+        //console.log(userData);
         if(!userData){
             res.status(404).json({ message: `No such user id ${req.params.id}`});
             return;
@@ -64,10 +63,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try{
         const userDate = await User.create(req.body);
-        console.table(req.body)
+        //console.table(req.body)
+        //creating session variable, and assign the key and value 
         req.session.save(()=>{
             req.session.user_id = userDate.id;
-            //where is the req.session.logged_in, where is the logged_in coming from? 
             req.session.username = userDate.username;
             req.session.logged_in = true;
 
@@ -83,7 +82,7 @@ router.post('/', async (req, res) => {
  * localhost:3001/api/user/login, since this is a post request, you will not able to see the information on google chrome, use insomnia
  */
 router.post('/login', async (req, res) => {
-    console.log(req.body, 'I made it here')
+    //console.log(req.body, 'I made it here')
     try{
         const userData = await User.findOne({ where : {username: req.body.username }});
 
@@ -103,9 +102,11 @@ router.post('/login', async (req, res) => {
             return;
         }
         
-        console.log(userData)
+        //console.log(userData)
 
+        //we are creating some property under session key, and req has the access to it in all the routes
         req.session.save(()=> {
+            //user_id is key for session
             req.session.user_id = userData.id;
             req.session.username = userData.username;
             req.session.logged_in = true;
@@ -126,7 +127,8 @@ router.post('/logout', async (req, res) => {
         } else {
             res.status(404).end();
         }        
-    } catch {
+    } catch (err){
+        console.log(err)
         res.status(400).end();
     }
 });

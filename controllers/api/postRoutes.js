@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const postData = await Post.findOne({
-            where : {id: req.params},
+            where : {id: req.params.id},
             attributes: ['id','title','content','created_at'],
             order: [['created_at','DESC']],
             include: [
@@ -65,6 +65,7 @@ router.get('/:id', async (req, res) => {
         }
         res.status(200).json(postData);
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 })

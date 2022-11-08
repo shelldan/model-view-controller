@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
         });
 
         const posts = postData.map((post)=> post.get({plain: true}))
-        console.log(posts) //for the homepage.handlebars 
+        //console.log(posts) //for the homepage.handlebars 
         
         // you need to pass object to handlebar, posts is an object 
         // homepage.handlebars, where you have {{#each posts as |post| }}, posts is an array
@@ -50,7 +50,7 @@ router.get('/login', (req, res) => {
         return;
     }
 
-    console.log(req.session.logged_in)
+    //console.log(req.session.logged_in)
     res.render('login')
 })
 

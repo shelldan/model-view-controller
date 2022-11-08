@@ -29,7 +29,9 @@ router.get('/',withAuth, async (req, res) => {
 
         res.render('dashboard', {
             posts,
-            logged_in: true,
+            // logged_in: true,
+            // creating a variable called 'logged_in' 
+            logged_in: req.session.logged_in, //true
             username: req.session.username,
         });
     } catch (err) {
@@ -40,6 +42,7 @@ router.get('/',withAuth, async (req, res) => {
 
 router.get('/edit/:id', withAuth, async (req, res) => {
     try{
+        //findOne is not an array, findAll will gives you an array
         const postData = await Post.findOne({
             where: {
                 id: req.params.id,
@@ -61,7 +64,9 @@ router.get('/edit/:id', withAuth, async (req, res) => {
             ],
         });
         
-        const post = postData.map((post) => post.get({ plain: true }))
+        //map will return with array
+        // const post = postData.map((post) => post.get({ plain: true }))
+        const post = postData.get({ plain: true })
 
         res.render('edit-post', {
             post,
