@@ -47,6 +47,16 @@ SO THAT I can publish articles, blog posts, and my thoughts and opinions
 ## Video
 Check out the [walk-through video](https://drive.google.com/file/d/1G5yRVrMFwa8HmCm1uIBL__uVshtMjyiH/view?usp=sharing).
 
+# Heroku
+```
+heroku login
+heroku create
+heroku main
+it will create the website for you, click on the app, then 'confgiture add-ons'
+enter 'JAWSDB MySQL' 
+
+```
+
 ## Installation
 To clone the repo:
 ```
