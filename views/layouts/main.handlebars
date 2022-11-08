@@ -16,7 +16,7 @@
             <a href="/" class="navigation">Home</a>
             <a href="/dashboard" class="navigation">Dashboard</a>
             {{#if logged_in}}
-            <a href="/" class="navigation">Logout [{{username}}]</a>
+            <a href="/" class="navigation" id="logout">Logout [{{username}}]</a>
             {{else}}
             <a href="/login" class="navigation">Login</a>
             {{/if}}
