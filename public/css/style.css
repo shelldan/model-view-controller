@@ -30,26 +30,21 @@ body {
     padding: 1rem 2rem 1rem 2rem; /* top | right | bottom | left */   
 }
 
+.navigation-container{
+    margin-bottom: 1.5rem;
+}
+
 .navigation{
     font-size: 1.5rem;
     color: var(--secondary);
     margin-right: 4rem;
 }
 
-a:link { 
-    text-decoration: none; 
-}
-
-a:visited { 
-    text-decoration: none; 
-}
-
-a:hover { 
-    text-decoration: none; 
-}
-
-a:active { 
-    text-decoration: none; 
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
 }
 
 .header {
@@ -64,16 +59,16 @@ a:active {
     display: inline-block;
     border-radius: var(--border-radius);
     box-shadow: 6px 5px var(--light-dark);
-  }
-
-/* body handlebars */
-
-.post{
-    margin: 1rem 2rem 1rem 2rem; /* top | right | bottom | left */
-    border: 3px solid var(--dark)   
 }
 
-.card{
+
+/* homepage.handlebars, post-info.handlebars */
+.post{
+    margin: 1rem 2rem 1rem 2rem; /* top | right | bottom | left */
+    /* border: 3px solid var(--dark)    */
+}
+
+.card-header{
     display: flex;
     justify-content: space-between;
     padding: 0 1rem 0 1rem; /* top | right | bottom | left */
@@ -81,7 +76,6 @@ a:active {
     color: var(--secondary);
 }
 
-.section{
-    padding: 0 1rem 0 1rem; /* top | right | bottom | left */
-    margin: 1rem 0 1rem 0; /* top | right | bottom | left */
+main{
+    margin: 2rem;
 }
