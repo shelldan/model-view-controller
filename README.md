@@ -18,6 +18,7 @@
 2. [User Story](#user-story)
 3. [Screenshot](#screenshot)
 4. [Video](#video)
+5. [Heroku](#heroku)
 5. [Installation](#installation)
 6. [License](#license)
 7. [Contributing](#contributing)
@@ -25,7 +26,7 @@
 9. [Questions](#contact-information)
 
 ## Description
-To build a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers' posts as well. The app is available on [Heroku](). The app will follow the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express session npm package for authentication
+To build a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers' posts as well. The app is available on [Heroku](https://still-tundra-30490.herokuapp.com/). The app will follow the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express session npm package for authentication
 
 ## User Story
 ```md
@@ -48,13 +49,33 @@ SO THAT I can publish articles, blog posts, and my thoughts and opinions
 Check out the [walk-through video](https://drive.google.com/file/d/1G5yRVrMFwa8HmCm1uIBL__uVshtMjyiH/view?usp=sharing).
 
 # Heroku
+Check out the live application in [Heroku](https://still-tundra-30490.herokuapp.com/)
+
+Below is the steps on deploying to heroku
 ```
 heroku login
 heroku create
 heroku main
-it will create the website for you, click on the app, then 'confgiture add-ons'
-enter 'JAWSDB MySQL' 
+```
+Then heroku will create the application for you, go to heroku and find the app; then click 'Configure-Add-ons';
+Enter 'JAWSDB MySQL' to Add-ons
 
+```
+git add 
+git commit -m
+```
+Also, you need commit before push to heroku
+```
+git push heroku main
+```
+Now your application is live
+
+To check how it is running on Heroku
+```
+heroku open 
+heroku run bash
+npm run seed
+exit
 ```
 
 ## Installation
