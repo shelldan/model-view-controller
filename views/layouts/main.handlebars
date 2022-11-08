@@ -14,8 +14,8 @@
     <div class="top-container">
         <nav class="navigation-container">
             <a href="/" class="navigation">Home</a>
-            {{#if logged_in}}
             <a href="/dashboard" class="navigation">Dashboard</a>
+            {{#if logged_in}}
             <a href="/" class="navigation" id="logout">Logout [{{username}}]</a>
             {{else}}
             <a href="/login" class="navigation">Login</a>
