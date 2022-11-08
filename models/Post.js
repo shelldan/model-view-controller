@@ -16,15 +16,13 @@ Post.init(
             allowNull: false,
         },
         content: {
-            type: DataTypes.STRING,
-        },
-        date_created: {
-            type: DataTypes.DATE,
-            allowNull:false,
-            defaultValue: DataTypes.NOW,
+            // TEXT is unlimited in length - STRING defaults to 255 characters in length
+            type: DataTypes.TEXT,
+            allowNull: false,
         },
         user_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: 'user',
                 key: 'id'
@@ -33,7 +31,8 @@ Post.init(
     },
     {
         sequelize,
-        timestamps: false,
+        // we want the timestamps created_at
+        // timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'post',

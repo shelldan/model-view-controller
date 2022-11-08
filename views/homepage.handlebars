@@ -1,12 +1,8 @@
 <!-- Loop over each object in the posts array -->
-{{#each posts as |post| }}
-<div class="post">
-    <div class="card">
-        <h3>{{post.title}}</h3>
-        <h4>Post by {{user.name}} on {{format_date post.date_created}}</h4>
-    </div>
-    <section class="section">
-        {{post.content}}
-    </section>            
-</div>
-{{/each}}
+<article class="post">
+
+  {{#each posts as |post| }}
+  {{> post-info post}}
+  {{/each}}
+
+</article>

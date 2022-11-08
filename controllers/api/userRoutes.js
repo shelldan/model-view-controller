@@ -1,26 +1,91 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
+
+/**
+ * localhost:3001/api/user/ -> api info, use insomnia to see the array of the users
+ */
+router.get('/', async (req, res) => {
+    try{
+        const userData = await User.findAll({
+            attributes: {exclude: ['password']},
+        });
+        res.status(200).json(userData);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
+/**
+ * localhost:3001/api/user/1 -> api info, use insomnia
+ * 
+ * question: why I couldn't get this route? 
+ */
+router.get('/:id', async (req, res) => {
+    try{
+        const userData = await User.findOne({
+            attributes: { exclude: ['password']},
+            where: {id: req.params.id },
+            include: [
+                {
+                    model: Post,
+                    attributes: ['id', 'title', 'content', 'created_at'],
+                },
+                {
+                    model: Comment,
+                    attributes: ['id','comment_text','created_at'],
+                    include: {
+                        model: Post,
+                        attributes: ['title'],
+                    },
+                },
+                {
+                    model: Post,
+                    attributes: ['title'],
+                }
+            ]
+        });
+        console.log(userData);
+        if(!userData){
+            res.status(404).json({ message: `No such user id ${req.params.id}`});
+            return;
+        }
+        res.status(200).json(userData);
+    } catch (err) {
+        res.status(400).json(err)
+    }
+});
+
+
+/**
+ * connect to the public/js/login.js, where it fetch('/api/user) = sign up 
+ * localhost:3001/api/user/ since this is a post request, you will not able to see the information on google chrome, use insomnia
+ */
 router.post('/', async (req, res) => {
     try{
         const userDate = await User.create(req.body);
-
+        console.table(req.body)
         req.session.save(()=>{
             req.session.user_id = userDate.id;
             //where is the req.session.logged_in, where is the logged_in coming from? 
+            req.session.username = userDate.username;
             req.session.logged_in = true;
 
-            req.status(200).json(userDate);
+            res.status(201).json(`Successfully created ${userDate.username}`);
         })
     } catch (err){
         res.status(400).json(err)
     }
 })
 
+/**
+ * connect to the public/js/login.js, where it fetch('/api/user/login') = login 
+ * localhost:3001/api/user/login, since this is a post request, you will not able to see the information on google chrome, use insomnia
+ */
 router.post('/login', async (req, res) => {
-    console.log(req.body, 'message')
+    console.log(req.body, 'I made it here')
     try{
-        const userData = await User.findOne({ where : {email: req.body.email }});
+        const userData = await User.findOne({ where : {username: req.body.username }});
 
         if(!userData){
             res
@@ -42,6 +107,7 @@ router.post('/login', async (req, res) => {
 
         req.session.save(()=> {
             req.session.user_id = userData.id;
+            req.session.username = userData.username;
             req.session.logged_in = true;
 
             res.json({ user: userData, message: 'You are now logged in!'});
@@ -51,14 +117,18 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/logout', (req, res) => {
-    if (req.session.logged_in){
-        req.session.destroy(()=> {
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
+router.post('/logout', async (req, res) => {
+    try{
+        if (req.session.logged_in){
+            const userData = await req.session.destroy(()=> {
+                res.status(204).end();
+            });
+        } else {
+            res.status(404).end();
+        }        
+    } catch {
+        res.status(400).end();
     }
-})
+});
 
 module.exports = router;
