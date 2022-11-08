@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{!-- <link rel="stylesheet" href="css/bootstrap.min.css"> --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    {{!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="/css/jass.css">
     <link rel="stylesheet" href="/css/style.css">
     <title>The Tech Blog</title>
 </head>
 <body>
     <div class="top-container">
-        <nav>
+        <nav class="navigation-container">
             <a href="/" class="navigation">Home</a>
-            <a href="/dashboard" class="navigation">Dashboard</a>
             {{#if logged_in}}
+            <a href="/dashboard" class="navigation">Dashboard</a>
             <a href="/" class="navigation" id="logout">Logout [{{username}}]</a>
             {{else}}
             <a href="/login" class="navigation">Login</a>
@@ -23,9 +23,11 @@
         </nav>
 
         <header class="header">
-            <h1 class="app-title">
-                The Tech Blog
-            </h1>
+            {{#if logged_in}}
+            <h1 class="app-title">Welcome, {{username}}!</h1>
+            {{else}}
+            <h1 class="app-title">The Tech Blog</h1>
+            {{/if}}
         </header>
     </div>
 
@@ -34,9 +36,8 @@
     </main>    
 
     {{#if logged_in}}
-    <script scr="/js/logout.js"></script>
+    <script src="/js/logout.js"></script>
     {{/if}}
-    <!-- <script language="javascript" src="js/bootstrap.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    {{!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> --}}
 </body>
 </html>
